@@ -59,3 +59,17 @@ var pikachu {
 		accuracy: .65
 	}]
 };
+
+var currentState;
+
+var cpuTurn = {
+	play: function() {
+
+	}
+};
+
+var playerTurn = {
+	play: function() {
+
+	}
+};
