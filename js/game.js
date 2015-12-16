@@ -93,6 +93,7 @@ var cpuTurn = {
 			$("#pikachuImage").animate({top: "-=25"}, 200, function() {
 				$("#pikachuImage").animate({top: "+=25"}, 200);
 			});
+			getAccuracy();
 		};
 
 		//checks to see if the move will go through or not. If it does, it calculates all the info. If it doesn't it ends turn.
@@ -101,6 +102,7 @@ var cpuTurn = {
 			//move hit
 			if (setAccuracy <= currentCpuMove.accuracy) {
 				$("#chatText").text(cpuPokemon.name + " used " + currentCpuMove.name);
+				getMoveType();
 			}
 			//move missed, update state and wait 1.5 seconds before calling loop again.
 			else {
@@ -109,6 +111,15 @@ var cpuTurn = {
 				setTimeout(loop, 1500);
 			}
 		};
+
+		var getMoveType = function() {
+			if (currentCpuMove.type == "Attack") {
+				setTimeout(attackingMove, 1500);
+			}
+			else {
+				setTimeout(defensiveMove, 1500);
+			}
+		}
 
 		console.log("WE GETTING HERE");
 		setupCpuField();
