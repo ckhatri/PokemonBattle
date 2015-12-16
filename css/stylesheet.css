@@ -10,7 +10,16 @@
 		-ms-user-select: none;
     }
 
-	
+	#main-container {
+        width: 400px;
+        height: 631px;
+        border: 6px solid #212121;
+    }
+
+    #top-screen {
+        height: 312px;
+        overflow: hidden;
+    }
 	/*---- Theme Classes ----*/
 	
 	.absolute {
@@ -45,6 +54,11 @@
 	
 	.text-center {
         text-align: center !important;
+    }
+
+    .innerBattleScreen {
+        width: 400px;
+        float: left;
     }
 	
 	.text-30 {
