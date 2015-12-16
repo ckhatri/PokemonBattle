@@ -77,7 +77,14 @@ var userPokemon;
 
 var cpuTurn = {
 	play: function() {
+		//gets random move from array.
+		var randomMove = Math.floor(Math.random() * 4);
+		console.log(randomMove);
+		var currentCpuMove = cpuPokemon.moves[randomMove];
 
+		var setupCpuField = function() {
+			$("chatText").text("What will " + cpuPokemon.name + " do?");
+		};
 	}
 };
 
