@@ -112,6 +112,7 @@ var cpuTurn = {
 			}
 		};
 
+		//gets the move type and calls the correct function for it.
 		var getMoveType = function() {
 			showMoveAnimation();
 			if (currentCpuMove.type == "Attack") {
@@ -122,10 +123,28 @@ var cpuTurn = {
 			}
 		};
 
+		//shows the attack animation.
 		var showMoveAnimation = function() {
 			$("#attackImage").addClass("cpuAttackImage");
 			$("#attackImage").removeClass("hide");
 			$("#attackImage").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
+		};
+
+		var attackingMove = function() {
+			$("#attackImage").addClass("hide");
+			$("#attackImage").removeClass("cpuAttackImage");
+			//if the pokemon doesn't have an effect, just do normal calculation.
+			if (!cpuPokemon.effect) {
+				userPokemon.health -= currentCpuMove.power;
+			}
+			//has some effect
+			else {
+				userPokemon.health -= currentCpuMove.power - (currentCpuMove.power * cpuPokemon.effect);
+				cpuPokemon.effect;
+			}
+			$("#userHealthBar").css("width", userPokemon.health + "%");
+			currentState = playerTurn;
+			loop();
 		};
 
 		setupCpuField();
