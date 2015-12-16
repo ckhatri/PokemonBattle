@@ -145,7 +145,7 @@ var cpuTurn = {
 			//has some effect
 			else {
 				userPokemon.health -= currentCpuMove.power - (currentCpuMove.power * cpuPokemon.effect);
-				cpuPokemon.effect;
+				cpuPokemon.effect = null;
 			}
 			$("#userHealthBar").css("width", userPokemon.health + "%");
 			currentState = playerTurn;
@@ -168,7 +168,7 @@ var playerTurn = {
 		var currentUserMove;
 		var setUpUserField = function() {
 			$("#users-buttons").removeClass("hide");
-			$("chatText").text("What will " + userPokemon.name + " do?");
+			$("#chatText").text("What will " + userPokemon.name + " do?");
 			var moveButtons = ["#move1-Text", "#move2-Text", "#move3-Text", "#move4-Text"];
 			for(var i = moveButtons.length - 1; i >= 0; i--) {
 				console.log("WE RUNNING");
@@ -177,11 +177,86 @@ var playerTurn = {
 
 		};
 
-		$("#move1-Button", "#move2-Button", "#move3-Button", "#move4-Button").unbind().click(function() {
+		//makes cpu jump to indicate that its preparing to attack.
+		var prepareToAttack = function() {
+			$("#users-buttons").addClass("hide");
+			$("#charmanderImage").animate({top: "-=25"}, 200, function() {
+				$("#charmanderImage").animate({top: "+=25"}, 200);
+			});
+			getAccuracy();
+		};
+
+		var getAccuracy = function() {
+			var setAccuracy = Math.random();
+			//move hit
+			if (setAccuracy <= currentUserMove.accuracy) {
+				$("#chatText").text(userPokemon.name + " used " + currentUserMove.name);
+				getMoveType();
+			}
+			//move missed, update state and wait 1.5 seconds before calling loop again.
+			else {
+				$("#chatText").text(userPokemon.name + " missed with " + currentUserMove.name);
+				currentState = cpuTurn;
+				setTimeout(loop, 1500);
+			}
+		};
+
+		//gets the move type and calls the correct function for it.
+		var getMoveType = function() {
+			showMoveAnimation();
+			setTimeout(resetMoveAnimation, 1000);
+			if (currentUserMove.type == "Attack") {
+				setTimeout(attackingMove, 1000);
+			}
+			else {
+				setTimeout(defensiveMove, 1000);
+			}
+		};
+
+		var showMoveAnimation = function() {
+			$("#attackImage").addClass("userAttackImage");
+			$("#attackImage").removeClass("hide");
+			$("#attackImage").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
+		};
+
+		var resetMoveAnimation = function() {
+			$("#attackImage").addClass("hide");
+			$("#attackImage").removeClass("userAttackImage");
+		};
+
+		//attacks and deals damage based on power and effect.
+		var attackingMove = function() {
+			//if the pokemon doesn't have an effect, just do normal calculation.
+			if (!userPokemon.effect) {
+				cpuPokemon.health -= currentUserMove.power;
+			}
+			//has some effect
+			else {
+				cpuPokemon.health -= currentUserMove.power - (currentUserMove.power * userPokemon.effect);
+				currentUserMove.effect = null;
+			}
+			$("#cpuHealthBar").css("width", cpuPokemon.health + "%");
+			currentState = cpuTurn;
+			loop();
+		};
+
+		//if its a defensive move it sets the effect of the opponent.
+		var defensiveMove = function() {
+			cpuPokemon.effect = currentUserMove.power;
+			currentState = cpuTurn;
+			loop();
+		};
+
+
+		console.log("WE MADE IT?");
+
+		setUpUserField();
+
+		$("#move1-Button, #move2-Button, #move3-Button, #move4-Button").unbind().click(function() {
 			var moveNum = $(this).attr("value");
 			currentUserMove = userPokemon.moves[moveNum];
-		})
-		setUpUserField();
+			prepareToAttack();
+		});
 	}
 };
 
@@ -205,7 +280,7 @@ var init = function() {
 	$("#cpuLvl").text("lvl " + cpuPokemon.lvl);
 	$("#userName").text(userPokemon.name);
 	$("#userLvl").text("lvl " + userPokemon.lvl);
-	currentState = cpuTurn;
+	currentState = playerTurn;
 	loop();
 };
 
