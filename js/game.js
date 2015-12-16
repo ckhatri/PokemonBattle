@@ -106,22 +106,28 @@ var cpuTurn = {
 			}
 			//move missed, update state and wait 1.5 seconds before calling loop again.
 			else {
-				$("#chatText").text(cpuPokemon.name + " missed!");
+				$("#chatText").text(cpuPokemon.name + " missed with " + currentCpuMove.name);
 				currentState = playerTurn;
 				setTimeout(loop, 1500);
 			}
 		};
 
 		var getMoveType = function() {
+			showMoveAnimation();
 			if (currentCpuMove.type == "Attack") {
 				setTimeout(attackingMove, 1500);
 			}
 			else {
 				setTimeout(defensiveMove, 1500);
 			}
-		}
+		};
 
-		console.log("WE GETTING HERE");
+		var showMoveAnimation = function() {
+			$("#attackImage").addClass("cpuAttackImage");
+			$("#attackImage").removeClass("hide");
+			$("#attackImage").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
+		};
+
 		setupCpuField();
 	}
 };
