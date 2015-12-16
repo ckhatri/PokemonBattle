@@ -1,5 +1,5 @@
-Pokemon Battle Web Game!
+# Pokemon Battle Web Game! #
 
-Charmander vs Pikachu!
+## Charmander vs Pikachu! ##
 
-Live here: http://chiragkhatri.me/PokemonBattle/
+Live [here](http://chiragkhatri.me/PokemonBattle/)
