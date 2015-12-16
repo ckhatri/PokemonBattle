@@ -82,16 +82,32 @@ var cpuTurn = {
 		console.log(randomMove);
 		var currentCpuMove = cpuPokemon.moves[randomMove];
 
+		//updates the text field and calls prepare to attack function to make pokemon jump.
 		var setupCpuField = function() {
 			$("#chatText").text("What will " + cpuPokemon.name + " do?");
 			prepareToAttack();
 		};
 
+		//makes cpu jump to indicate that its preparing to attack.
 		var prepareToAttack = function() {
-			console.log("IN HERE BOIS");
 			$("#pikachuImage").animate({top: "-=25"}, 200, function() {
 				$("#pikachuImage").animate({top: "+=25"}, 200);
 			});
+		};
+
+		//checks to see if the move will go through or not. If it does, it calculates all the info. If it doesn't it ends turn.
+		var getAccuracy = function() {
+			var setAccuracy = Math.random();
+			//move hit
+			if (setAccuracy <= currentCpuMove.accuracy) {
+				$("#chatText").text(cpuPokemon.name + " used " + currentCpuMove.name);
+			}
+			//move missed, update state and wait 1.5 seconds before calling loop again.
+			else {
+				$("#chatText").text(cpuPokemon.name + " missed!");
+				currentState = playerTurn;
+				setTimeout(loop, 1500);
+			}
 		};
 
 		console.log("WE GETTING HERE");
