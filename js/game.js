@@ -1,3 +1,10 @@
+
+/*
+	Pokemon objects hold name, health, level, effect and an array of their moves.
+	Moves have a name, a type if it's an attack of defensive, power and accuracy.
+*/
+
+//charmander object
 var charmander = {
 	name: "Charmander",
 	health: 100,
@@ -29,6 +36,7 @@ var charmander = {
 	}]
 };
 
+//pikachu object
 var pikachu = {
 	name: "Pikachu",
 	health: 100,
@@ -60,8 +68,11 @@ var pikachu = {
 	}]
 };
 
+//who is playing
 var currentState;
+//cpuPokemon
 var cpuPokemon;
+//userPokemon
 var userPokemon;
 
 var cpuTurn = {
@@ -76,6 +87,19 @@ var playerTurn = {
 	}
 };
 
+//check to see if game is over, else play!
+var loop = function() {
+	if (cpuPokemon.health <= 0 || userPokemon.health <= 0) {
+		$("#gameOver").removeClass("hide");
+		console.log("Game Over!");
+	}
+	else {
+		currentState.play();
+	}
+};
+
+//init function which sets the cpu and userPokemon to objects and dynamically gets their names and levels.
+//also sets currentState to playerTurn since player always starts first.
 var init = function() {
 	cpuPokemon = pikachu;
 	userPokemon = charmander;
@@ -83,7 +107,8 @@ var init = function() {
 	$("#cpuLvl").text("lvl " + cpuPokemon.lvl);
 	$("#userName").text(userPokemon.name);
 	$("#userLvl").text("lvl " + userPokemon.lvl);
-	currnetState = playerTurn;
+	currentState = playerTurn;
+	loop();
 };
 
 init();
