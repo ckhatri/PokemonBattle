@@ -1,4 +1,4 @@
-var charmander {
+var charmander = {
 	name: "Charmander",
 	health: 100,
 	lvl: 12,
@@ -29,7 +29,7 @@ var charmander {
 	}]
 };
 
-var pikachu {
+var pikachu = {
 	name: "Pikachu",
 	health: 100,
 	lvl: 10,
@@ -61,6 +61,8 @@ var pikachu {
 };
 
 var currentState;
+var cpuPokemon;
+var userPokemon;
 
 var cpuTurn = {
 	play: function() {
@@ -73,3 +75,15 @@ var playerTurn = {
 
 	}
 };
+
+var init = function() {
+	cpuPokemon = pikachu;
+	userPokemon = charmander;
+	$("#cpuName").text(cpuPokemon.name);
+	$("#cpuLvl").text("lvl " + cpuPokemon.lvl);
+	$("#userName").text(userPokemon.name);
+	$("#userLvl").text("lvl " + userPokemon.lvl);
+	currnetState = playerTurn;
+};
+
+init();
