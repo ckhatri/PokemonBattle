@@ -165,6 +165,7 @@ var cpuTurn = {
 
 var playerTurn = {
 	play: function() {
+		var currentUserMove;
 		var setUpUserField = function() {
 			$("#users-buttons").removeClass("hide");
 			$("chatText").text("What will " + userPokemon.name + " do?");
@@ -176,6 +177,10 @@ var playerTurn = {
 
 		};
 
+		$("#move1-Button", "#move2-Button", "#move3-Button", "#move4-Button").unbind().click(function() {
+			var moveNum = $(this).attr("value");
+			currentUserMove = userPokemon.moves[moveNum];
+		})
 		setUpUserField();
 	}
 };
