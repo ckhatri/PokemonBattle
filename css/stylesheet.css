@@ -20,6 +20,64 @@
         height: 312px;
         overflow: hidden;
     }
+
+    #move1-Text {
+        width: 132px;
+        bottom: 196px;
+        left: 34px;
+        z-index: 1;
+    }
+
+    #move2-Text {
+        width: 132px;
+        bottom: 196px;
+        right: 34px;
+        z-index: 1;
+    }
+
+    #move3-Text {
+        width: 132px;
+        bottom: 101px;
+        left: 34px;
+        z-index: 1;
+    }
+
+    #move4-Text {
+        width: 132px;
+        bottom: 101px;
+        right: 34px;
+        z-index: 1;
+    }
+
+    #move1Button {
+        height: 75px;
+        bottom: 170px;
+        left: 20px;
+        position: absolute !important;
+    }
+
+    #move2Button {
+        height: 75px;
+        bottom: 170px;
+        right: 20px;
+        position: absolute !important;
+    }
+
+    #move3Button {
+        height: 75px;
+        bottom: 75px;
+        left: 20px;
+        position: absolute !important;
+    }
+
+
+    #move4Button {
+        height: 75px;
+        bottom: 75px;
+        right: 20px;
+        position: absolute !important;
+    }
+
 	/*---- Theme Classes ----*/
 	
 	.absolute {
@@ -61,6 +119,7 @@
         float: left;
     }
 	
+
 	.text-30 {
         font-size: 30px !important;
         line-height: 40px !important;
