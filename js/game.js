@@ -79,7 +79,14 @@ var userPokemon;
 var cpuTurn = {
 	play: function() {
 		//gets random move from array.
-		var randomMove = Math.floor(Math.random() * 4);
+		var randomMove;
+		//if the cpu already used a defensive move, hence set an effect don't randomize the two defensive moves.
+		if (!userPokemon.effect) {
+			randomMove = Math.floor(Math.random() * 4);
+		}
+		else {
+			randomMove = Math.floor(Math.random() * 2);
+		}
 		var currentCpuMove = cpuPokemon.moves[randomMove];
 
 		//updates the text field and calls prepare to attack function to make pokemon jump.
