@@ -80,7 +80,6 @@ var cpuTurn = {
 	play: function() {
 		//gets random move from array.
 		var randomMove = Math.floor(Math.random() * 4);
-		console.log(randomMove);
 		var currentCpuMove = cpuPokemon.moves[randomMove];
 
 		//updates the text field and calls prepare to attack function to make pokemon jump.
@@ -109,7 +108,7 @@ var cpuTurn = {
 			else {
 				$("#chatText").text(cpuPokemon.name + " missed with " + currentCpuMove.name);
 				currentState = playerTurn;
-				setTimeout(loop, 1500);
+				setTimeout(loop, 1000);
 			}
 		};
 
@@ -149,14 +148,14 @@ var cpuTurn = {
 			}
 			$("#userHealthBar").css("width", userPokemon.health + "%");
 			currentState = playerTurn;
-			loop();
+			setTimeout(loop, 1000);
 		};
 
 		//if its a defensive move it sets the effect of the opponent.
 		var defensiveMove = function() {
 			userPokemon.effect = currentCpuMove.power;
 			currentState = playerTurn;
-			loop();
+			setTimeout(loop, 1000);
 		};
 
 		setupCpuField();
@@ -171,7 +170,6 @@ var playerTurn = {
 			$("#chatText").text("What will " + userPokemon.name + " do?");
 			var moveButtons = ["#move1-Text", "#move2-Text", "#move3-Text", "#move4-Text"];
 			for(var i = moveButtons.length - 1; i >= 0; i--) {
-				console.log("WE RUNNING");
 				$(moveButtons[i]).text(userPokemon.moves[i].name);
 			}
 
@@ -197,7 +195,7 @@ var playerTurn = {
 			else {
 				$("#chatText").text(userPokemon.name + " missed with " + currentUserMove.name);
 				currentState = cpuTurn;
-				setTimeout(loop, 1500);
+				setTimeout(loop, 1000);
 			}
 		};
 
@@ -212,13 +210,15 @@ var playerTurn = {
 				setTimeout(defensiveMove, 1000);
 			}
 		};
-
+ 		
+ 		//show the moving animation
 		var showMoveAnimation = function() {
 			$("#attackImage").addClass("userAttackImage");
 			$("#attackImage").removeClass("hide");
 			$("#attackImage").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
 		};
 
+		//resetes the moving animation
 		var resetMoveAnimation = function() {
 			$("#attackImage").addClass("hide");
 			$("#attackImage").removeClass("userAttackImage");
@@ -237,18 +237,15 @@ var playerTurn = {
 			}
 			$("#cpuHealthBar").css("width", cpuPokemon.health + "%");
 			currentState = cpuTurn;
-			loop();
+			setTimeout(loop, 1000);
 		};
 
 		//if its a defensive move it sets the effect of the opponent.
 		var defensiveMove = function() {
 			cpuPokemon.effect = currentUserMove.power;
 			currentState = cpuTurn;
-			loop();
+			setTimeout(loop, 1000);
 		};
-
-
-		console.log("WE MADE IT?");
 
 		setUpUserField();
 
@@ -264,7 +261,6 @@ var playerTurn = {
 var loop = function() {
 	if (cpuPokemon.health <= 0 || userPokemon.health <= 0) {
 		$("#gameOver").removeClass("hide");
-		console.log("Game Over!");
 	}
 	else {
 		currentState.play();
