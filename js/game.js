@@ -83,8 +83,19 @@ var cpuTurn = {
 		var currentCpuMove = cpuPokemon.moves[randomMove];
 
 		var setupCpuField = function() {
-			$("chatText").text("What will " + cpuPokemon.name + " do?");
+			$("#chatText").text("What will " + cpuPokemon.name + " do?");
+			prepareToAttack();
 		};
+
+		var prepareToAttack = function() {
+			console.log("IN HERE BOIS");
+			$("#pikachuImage").animate({top: "-=25"}, 200, function() {
+				$("#pikachuImage").animate({top: "+=25"}, 200);
+			});
+		};
+
+		console.log("WE GETTING HERE");
+		setupCpuField();
 	}
 };
 
@@ -114,7 +125,7 @@ var init = function() {
 	$("#cpuLvl").text("lvl " + cpuPokemon.lvl);
 	$("#userName").text(userPokemon.name);
 	$("#userLvl").text("lvl " + userPokemon.lvl);
-	currentState = playerTurn;
+	currentState = cpuTurn;
 	loop();
 };
 
