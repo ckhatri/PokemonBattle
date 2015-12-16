@@ -168,11 +168,12 @@ var playerTurn = {
 		var setUpUserField = function() {
 			$("#users-buttons").removeClass("hide");
 			$("chatText").text("What will " + userPokemon.name + " do?");
-			var moveButtons = ["move1-Text", "move2-Text", "move3-Text", "move4-Text"];
-
+			var moveButtons = ["#move1-Text", "#move2-Text", "#move3-Text", "#move4-Text"];
 			for(var i = moveButtons.length - 1; i >= 0; i--) {
+				console.log("WE RUNNING");
 				$(moveButtons[i]).text(userPokemon.moves[i].name);
-			};
+			}
+
 		};
 
 		setUpUserField();
