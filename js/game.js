@@ -25,7 +25,7 @@ var charmander = {
 	{
 		name: "Leer",
 		type: "Defense",
-		power: .20,
+		power: -.20,
 		accuracy: 1.0
 	},
 	{
@@ -57,7 +57,7 @@ var pikachu = {
 	{
 		name: "Tail Whip",
 		type: "Defense",
-		power: .15,
+		power: -.15,
 		accuracy: 1.0
 	},
 	{
@@ -75,6 +75,7 @@ var cpuPokemon;
 //userPokemon
 var userPokemon;
 
+//does the cpu turn stuff, picks move, updates chat box, hits or misses and updates accordingly.
 var cpuTurn = {
 	play: function() {
 		//gets random move from array.
@@ -115,11 +116,12 @@ var cpuTurn = {
 		//gets the move type and calls the correct function for it.
 		var getMoveType = function() {
 			showMoveAnimation();
+			setTimeout(resetMoveAnimation, 1000);
 			if (currentCpuMove.type == "Attack") {
-				setTimeout(attackingMove, 1500);
+				setTimeout(attackingMove, 1000);
 			}
 			else {
-				setTimeout(defensiveMove, 1500);
+				setTimeout(defensiveMove, 1000);
 			}
 		};
 
@@ -130,9 +132,12 @@ var cpuTurn = {
 			$("#attackImage").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
 		};
 
-		var attackingMove = function() {
+		var resetMoveAnimation = function() {
 			$("#attackImage").addClass("hide");
 			$("#attackImage").removeClass("cpuAttackImage");
+		};
+		//attacks and deals damage based on power and effect.
+		var attackingMove = function() {
 			//if the pokemon doesn't have an effect, just do normal calculation.
 			if (!cpuPokemon.effect) {
 				userPokemon.health -= currentCpuMove.power;
@@ -147,13 +152,30 @@ var cpuTurn = {
 			loop();
 		};
 
+		//if its a defensive move it sets the effect of the opponent.
+		var defensiveMove = function() {
+			userPokemon.effect = currentCpuMove.power;
+			currentState = playerTurn;
+			loop();
+		};
+
 		setupCpuField();
 	}
 };
 
 var playerTurn = {
 	play: function() {
+		var setUpUserField = function() {
+			$("#users-buttons").removeClass("hide");
+			$("chatText").text("What will " + userPokemon.name + " do?");
+			var moveButtons = ["move1-Text", "move2-Text", "move3-Text", "move4-Text"];
 
+			for(var i = moveButtons.length - 1; i >= 0; i--) {
+				$(moveButtons[i]).text(userPokemon.moves[i].name);
+			};
+		};
+
+		setUpUserField();
 	}
 };
 
