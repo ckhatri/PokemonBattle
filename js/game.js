@@ -344,6 +344,21 @@ var playerTurn = {
 	}
 };
 
+var choosePokemon = function() {
+	$("#pokemonImage1").unbind().click(function() {
+		userPokemon = charmander;
+		init();
+	});
+	$("#pokemonImage2").unbind().click(function() {
+		userPokemon = squirtle;
+		init();
+	});
+	$("#pokemonImage3").unbind().click(function() {
+		userPokemon = bulbasaur;
+		init();
+	});
+
+};
 //check to see if game is over, else play!
 var loop = function() {
 	if (cpuPokemon.health <= 0 || userPokemon.health <= 0) {
@@ -357,8 +372,9 @@ var loop = function() {
 //init function which sets the cpu and userPokemon to objects and dynamically gets their names and levels.
 //also sets currentState to playerTurn since player always starts first.
 var init = function() {
+	$("#choosePokemon-container").addClass("hide");
+	$("#main-container").removeClass("hide");
 	cpuPokemon = pikachu;
-	userPokemon = charmander;
 	$("#cpuName").text(cpuPokemon.name);
 	$("#cpuLvl").text("lvl " + cpuPokemon.lvl);
 	$("#userName").text(userPokemon.name);
@@ -367,4 +383,4 @@ var init = function() {
 	loop();
 };
 
-init();
+choosePokemon();
