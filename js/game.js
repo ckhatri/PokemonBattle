@@ -10,6 +10,7 @@ var charmander = {
 	health: 100,
 	lvl: 12,
 	effect: null,
+	imageSrc: "img/charmander.png",
 	moves: [{
 		name: "Ember",
 		type: "Attack",
@@ -42,6 +43,7 @@ var squirtle = {
 	health: 100,
 	lvl: 12,
 	effect: null,
+	imageSrc: "img/squirtle.png",
 	moves: [{
 		name: "Water Gun",
 		type: "Attack",
@@ -74,6 +76,7 @@ var bulbasaur = {
 	health: 100,
 	lvl: 12,
 	effect: null,
+	imageSrc: "img/charmander.png",
 	moves: [{
 		name: "Vine Whip",
 		type: "Attack",
@@ -379,6 +382,7 @@ var init = function() {
 	$("#cpuLvl").text("lvl " + cpuPokemon.lvl);
 	$("#userName").text(userPokemon.name);
 	$("#userLvl").text("lvl " + userPokemon.lvl);
+	$("#playerPokemon").attr("src", userPokemon.imageSrc);
 	currentState = playerTurn;
 	loop();
 };

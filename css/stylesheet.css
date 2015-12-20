@@ -106,13 +106,14 @@
         position: absolute !important;
     }
 
-    #charmander {
+    #playerPokemon {
         height: 115px;
+        width: 126px;
         top: 121px;
         left: 40px;
     }
 
-    #charmanderInfo {
+    #PlayerPokemon-Info {
         height: 45px;
         top: 187px;
         right: 10px;
