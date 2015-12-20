@@ -36,6 +36,70 @@ var charmander = {
 	}]
 };
 
+//squirtle object
+var squirtle = {
+	name: "Squirtle",
+	health: 100,
+	lvl: 12,
+	effect: null,
+	moves: [{
+		name: "Water Gun",
+		type: "Attack",
+		power: 20,
+		accuracy: .80
+	},
+	{
+		name: "Tackle",
+		type: "Attack",
+		power: 10,
+		accuracy: .90
+	},
+	{
+		name: "Tail Whip",
+		type: "Defense",
+		power: -.20,
+		accuracy: 1.0
+	},
+	{
+		name: "Withdraw",
+		type: "Defense",
+		power: .65,
+		accuracy: .65
+	}]
+};
+
+//bulbasaur object
+var bulbasaur = {
+	name: "Bulbasaur",
+	health: 100,
+	lvl: 12,
+	effect: null,
+	moves: [{
+		name: "Vine Whip",
+		type: "Attack",
+		power: 20,
+		accuracy: .80
+	},
+	{
+		name: "Tackle",
+		type: "Attack",
+		power: 10,
+		accuracy: .90
+	},
+	{
+		name: "Leer",
+		type: "Defense",
+		power: -.20,
+		accuracy: 1.0
+	},
+	{
+		name: "Growl",
+		type: "Defense",
+		power: .65,
+		accuracy: .65
+	}]
+};
+
 //pikachu object
 var pikachu = {
 	name: "Pikachu",
