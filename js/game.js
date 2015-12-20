@@ -78,7 +78,6 @@ var userPokemon;
 //returns the right color for the health bar depending on the current health of the Pokemon.
 var getHealthBarColor = function(healthBarPercent) {
 	if (healthBarPercent <= 20) {
-
 		return "#DC143C";
 	}
 	else if (healthBarPercent > 20 && healthBarPercent < 50) {
@@ -88,6 +87,7 @@ var getHealthBarColor = function(healthBarPercent) {
 		return "#00B200";
 	}
 }
+
 //does the cpu turn stuff, picks move, updates chat box, hits or misses and updates accordingly.
 var cpuTurn = {
 	play: function() {
@@ -194,7 +194,6 @@ var playerTurn = {
 			for(var i = moveButtons.length - 1; i >= 0; i--) {
 				$(moveButtons[i]).text(userPokemon.moves[i].name);
 			}
-
 		};
 
 		//makes cpu jump to indicate that its preparing to attack.

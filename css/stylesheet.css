@@ -17,6 +17,23 @@
         border: 6px solid #212121;
     }
 
+    #choosePokemon {
+        width: 400px;
+        height: 631px;
+        border: 6px solid #212121;
+    }
+
+    #CharmanderChoose {
+        height: 210px;
+    }
+
+    #CharmanderChooseImage {
+        height: 210px;
+        left: 115px;
+    }
+
+
+
     #top-screen {
         height: 312px;
         overflow: hidden;
