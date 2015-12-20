@@ -17,17 +17,27 @@
         border: 6px solid #212121;
     }
 
-    #choosePokemon {
+    #choosePokemon-container {
         width: 400px;
         height: 631px;
         border: 6px solid #212121;
     }
 
-    #CharmanderChoose {
+    #choiceImageHolder {
         height: 210px;
     }
 
-    #CharmanderChooseImage {
+    #pokemonImage1 {
+        height: 210px;
+        left: 115px;
+    }
+
+    #pokemonImage2 {
+        height: 210px;
+        left: 115px;
+    }
+
+    #pokemonImage3 {
         height: 210px;
         left: 115px;
     }
