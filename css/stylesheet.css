@@ -24,7 +24,11 @@
     }
 
     #choiceImageHolder {
-        height: 210px;
+        height: 200px;
+    }  
+
+    #chooseText {
+        text-align: center;
     }
 
     #pokemonImage1 {
