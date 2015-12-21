@@ -76,7 +76,7 @@ var bulbasaur = {
 	health: 100,
 	lvl: 12,
 	effect: null,
-	imageSrc: "img/charmander.png",
+	imageSrc: "img/bulbasaur.png",
 	moves: [{
 		name: "Vine Whip",
 		type: "Attack",
@@ -358,6 +358,7 @@ var choosePokemon = function() {
 	});
 	$("#pokemonImage3").unbind().click(function() {
 		userPokemon = bulbasaur;
+		document.getElementById("playerPokemon").style.top = "150px";
 		init();
 	});
 
